@@ -1,12 +1,28 @@
 const express = require ('express');
 const app = express();
+const mongoose = require('mongoose');
+const morgan = require('morgan'); //sirve para trabajar los middleware
+const dotenv = require('dotenv'); //loads environment variables from a .env file into process.env
+dotenv.config();
+
+//db
+mongoose.connect(process.env.MONGO_URI,  { useNewUrlParser: true,  useCreateIndex: true })
+.then(() => console.log('DB Connected'))
+
+mongoose.connection.on('error', err => {
+    console.log(`DB connection error: ${err.message}`);
+});
 
 //bring in routes
-const { getInventories } = require('./routes/inventory');
+const inventoryRoutes = require('./routes/inventory');
 
-app.get('/', getInventories);
 
-const port =  8080;
+// middleware sirve para las autenticaciones o para algunas validaciones
+app.use(morgan('dev')); //nos dice que método se esta usando en la consola cada vez que refrescamos la página
+
+app.get('/', inventoryRoutes);
+
+const port =  process.env.PORT || 8080;
 app.listen(port, () => {
     console.log(`A Node Js API is listening on port: ${port}`);
 });
