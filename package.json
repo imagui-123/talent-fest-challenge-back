@@ -1,0 +1,23 @@
+{
+  "name": "talent-fest-challenge-back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imagui-123/talent-fest-challenge-back.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/imagui-123/talent-fest-challenge-back/issues"
+  },
+  "homepage": "https://github.com/imagui-123/talent-fest-challenge-back#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^1.19.1"
+  }
+}
