@@ -16,6 +16,6 @@ exports.createInventory = (req, res) => {
         }
         res.status(200).json({
             inventory: result
-        })
-    })
+        });
+    });
 };
