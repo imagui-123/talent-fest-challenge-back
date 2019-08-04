@@ -7,9 +7,20 @@ const inventorySchema = new mongoose.Schema({
        minlength: 4,
        maxlength: 25
    },
-   quantity:{
+   quality:{
+        type: String
+   },
+   quantity: {
        type: Number,
-       required: 'quantity is required'
+       minlength: 1,
+       maxlength: 10
+   },
+   status: {
+       type: String
+    
+   },
+   Notes: {
+       type: String
    }
 });
 

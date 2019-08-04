@@ -8,12 +8,14 @@ exports.getInventories = (req, res) => {
 
 exports.createInventory = (req, res) => {
     const inventory = new Inventory(req.body);
-    // console.log("CREATING INVENTORY: ", req.body);
     inventory.save((err, result) => {
-        if(err) {
+        if(err){
             return res.status(400).json({
                 error: err
-            })
+            });
         }
+        res.status(200).json({
+            inventory: result
+        })
     })
 };

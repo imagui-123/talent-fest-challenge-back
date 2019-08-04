@@ -3,8 +3,8 @@ const inventoryController = require('../controllers/inventory');
 
 const router = express.Router();
 
-router.get('/', inventoryController.getInventories);
-router.get('/inventory', inventoryController.createInventory);
+router.get("/", inventoryController.getInventories);
+router.post("/inventory", inventoryController.createInventory);
 
 module.exports = router;
 
