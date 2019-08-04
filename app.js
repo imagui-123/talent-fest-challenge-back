@@ -23,6 +23,7 @@ mongoose.connection.on('error', err => {
 //bring in routes
 const inventoryRoutes = require('./routes/inventory');
 const authRoutes = require('./routes/auth');
+const userRoutes = require('./routes/user');
 
 
 // middleware sirve para las autenticaciones o para algunas validaciones
@@ -32,6 +33,7 @@ app.use(cookieParser());
 app.use(expressValidator());
 app.use("/", inventoryRoutes);
 app.use("/", authRoutes);
+app.use('/', userRoutes);
 app.use(function (err, req, res, next) {
     if (err.name === 'UnauthorizedError') {
       res.status(401).json({error: 'Unauthorized!'});
