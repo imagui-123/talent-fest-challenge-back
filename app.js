@@ -21,6 +21,7 @@ mongoose.connection.on('error', err => {
 
 //bring in routes
 const inventoryRoutes = require('./routes/inventory');
+const authRoutes = require('./routes/auth');
 
 
 // middleware sirve para las autenticaciones o para algunas validaciones
@@ -28,6 +29,7 @@ app.use(morgan('dev')); //nos dice que método se esta usando en la consola cada
 app.use(bodyParser.json());
 app.use(expressValidator());
 app.use("/", inventoryRoutes);
+app.use("/", authRoutes);
 
 
 const port =  process.env.PORT || 8080;
