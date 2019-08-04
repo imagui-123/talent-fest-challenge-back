@@ -7,8 +7,10 @@ const {createInventoryValidator} = require('../validator');
 const router = express.Router();
 
 router.get("/", getInventories);
-router.post("/inventory", requireSignin, createInventoryValidator, createInventory);
-
+router.post("/inventory/:userId", 
+requireSignin,  
+createInventory,  
+createInventoryValidator);
 
 //any route containing :userId, our app will first execute userById()
 router.param('userId', userById);
