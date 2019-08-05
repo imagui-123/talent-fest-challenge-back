@@ -20,7 +20,7 @@ exports.inventoryById = (req, res, next, id) => {
 exports.getInventories = (req, res) => {
     const inventories = Inventory.find()
     .populate("notesBy", "_id name")
-    .select("_id product quality quantity status ")
+    .select("_id items quality quantity status created ")
     .then(inventories => {
         res.json(inventories);
     })
@@ -33,7 +33,7 @@ exports.createInventory = (req, res, next) => {
 
     req.profile.hased_password = undefined;
     req.profile.salt = undefined;
-    // inventory.notesBy = req.profile;
+    inventory.notesBy = req.profile;
     //  console.log('PROFILE', req.profile);
 //     console.log(req.body)
 
