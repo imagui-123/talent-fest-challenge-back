@@ -1,4 +1,6 @@
 const Inventory = require('../models/inventory');
+const _ = require("lodash"); // Se usa para simplificar el manejo y edición de objetos, arrays, etc. consiguiendo que nuestro código sea mucho más legible y fácil de seguir para terceras personas.
+
 
 exports.inventoryById = (req, res, next, id) => {
     Inventory.findById(id)
@@ -70,7 +72,7 @@ exports.isInventory = (req, res, next) => {
     next();
   };
 
-exports.updateInventory = (req, res) => {
+exports.updateInventory = (req, res, next) => {
     let inventory = req.post;
     inventory = _.extend(inventory, req.body);
     inventory.updated = Date.now();
@@ -80,13 +82,13 @@ exports.updateInventory = (req, res) => {
                 error: 'You are not authorized to perform this action'
             });
         }
-        res.json( inventory );
+        res.json(inventory);
     });
     };
 
 exports.deleteInventory = (req, res, next) => {
     let inventory = req.post;
-    inventory.remove((err, inventory) => {
+    inventory.remove(err  => {
       if (err) {
         return res.status(400).json({
           error: err
@@ -96,4 +98,8 @@ exports.deleteInventory = (req, res, next) => {
         message: "Inventory deleted successfully"
       });
     });
+  };
+
+exports.singleInventory = (req, res) => {
+    return res.json(req.post);
   };
