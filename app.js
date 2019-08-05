@@ -5,6 +5,7 @@ const morgan = require('morgan'); //sirve para trabajar los middleware
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const expressValidator = require('express-validator');
+const cors = require('cors');
 const dotenv = require('dotenv'); //loads environment variables from a .env file into process.env
 dotenv.config();
 
@@ -31,6 +32,7 @@ app.use(morgan('dev')); //nos dice que método se esta usando en la consola cada
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(expressValidator());
+app.use(cors());
 app.use("/", inventoryRoutes);
 app.use("/", authRoutes);
 app.use('/', userRoutes);

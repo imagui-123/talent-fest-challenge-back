@@ -70,21 +70,21 @@ exports.isInventory = (req, res, next) => {
     next();
   };
 
-exports.updateInventory = (req, res, next) => {
+exports.updateInventory = (req, res) => {
     let inventory = req.post;
     inventory = _.extend(inventory, req.body);
     inventory.updated = Date.now();
     inventory.save(err => {
         if(err) {
             return res.status(400).json ({
-                error: err
-            })
+                error: 'You are not authorized to perform this action'
+            });
         }
-        res.json(inventory)
-    })
-}
+        res.json( inventory );
+    });
+    };
 
-exports.deleteInventory = (req, res) => {
+exports.deleteInventory = (req, res, next) => {
     let inventory = req.post;
     inventory.remove((err, inventory) => {
       if (err) {

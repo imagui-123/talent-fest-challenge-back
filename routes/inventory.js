@@ -22,7 +22,7 @@ router.post("/inventory/:userId",
 
 router.get('/inventories/:userId', requireSignin, inventoriesByUser);
 // router.get('/inventory/:inventoryId', singlePost);
-router.put('/inventory/:inventoryId', requireSignin, isInventory, updateInventory);
+router.put("/inventory/:inventoryId", requireSignin, isInventory, updateInventory);
 router.delete('/inventory/:inventoryId', requireSignin, isInventory, deleteInventory);
 
 //any route containing :userId, our app will first execute userById()
