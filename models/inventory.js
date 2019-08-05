@@ -19,10 +19,6 @@ const inventorySchema = new mongoose.Schema({
    status: {
        type: String
    },
-   notes:{
-    type:ObjectId,
-    ref:"User"
-   },
    notesBy: {
     type: ObjectId,
     ref: "User"
