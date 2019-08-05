@@ -19,7 +19,7 @@ exports.inventoryById = (req, res, next, id) => {
 
 exports.getInventories = (req, res) => {
     const inventories = Inventory.find()
-    .populate("notesBy", "_id name lastname")
+    .populate("notesBy", "_id name")
     .select("_id product quality quantity status ")
     .then(inventories => {
         res.json(inventories);
@@ -47,7 +47,7 @@ exports.createInventory = (req, res, next) => {
 
 exports.inventoriesByUser = (req, res) => {
     Inventory.find({ notesBy: req.profile._id })
-      .populate("notesBy", "_id name lastname")
+      .populate("notesBy", "_id name ")
     //   .select("_id product quantity quality status created ")
       .sort("_created")
       .exec((err, inventories) => {
