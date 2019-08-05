@@ -2,8 +2,9 @@ const mongoose = require ('mongoose');
 const {ObjectId} = mongoose.Schema;
 
 const inventorySchema = new mongoose.Schema({
-   product: {
-       type:String,
+   items: {
+       type:Object,
+       trim: true,
        required: true
    },
    quality:{
@@ -11,7 +12,7 @@ const inventorySchema = new mongoose.Schema({
    },
    quantity: {
        type: Number,
-       required: true,
+       
        minlength: 1,
        maxlength: 10
    },

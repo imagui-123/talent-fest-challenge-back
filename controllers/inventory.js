@@ -28,12 +28,14 @@ exports.getInventories = (req, res) => {
 };
 
 exports.createInventory = (req, res, next) => {
+  console.log(req.body);
     let inventory = new Inventory(req.body)
 
     req.profile.hased_password = undefined;
     req.profile.salt = undefined;
-    inventory.notesBy = req.profile;
-    // console.log('PROFILE', req.profile);
+    // inventory.notesBy = req.profile;
+    //  console.log('PROFILE', req.profile);
+//     console.log(req.body)
 
     inventory.save((err, result) => {
         if(err) {
