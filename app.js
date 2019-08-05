@@ -6,7 +6,8 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const expressValidator = require("express-validator");
 const cors = require("cors");
-const dotenv = require("dotenv"); //loads environment variables from a .env file into process.env
+const dotenv = require("dotenv"); //loads environment variables from a .env file into process.
+const dns = require("dns");
 dotenv.config();
 
 //db
@@ -46,7 +47,7 @@ app.listen(port, () => {
   console.log(`A Node Js API is listening on port: ${port}`);
   
   function reFresh(){
-  require("dns").resolve("www.google.com", function(err) {
+  dns.resolve("www.google.com", function(err) {
     if (err) {
       console.log("No connection");
     } else {
@@ -54,6 +55,6 @@ app.listen(port, () => {
     }
   });
   }
-  let myVar = setInterval(reFresh, 50000);
+  let myVar = setInterval(reFresh, 1000);
 
 });

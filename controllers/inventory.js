@@ -19,7 +19,7 @@ exports.inventoryById = (req, res, next, id) => {
 
 exports.getInventories = (req, res) => {
     const inventories = Inventory.find()
-    .populate("notesBy", "_id name")
+    .populate("notesBy", "_id name email location")
     .select("_id items quality quantity status created ")
     .then(inventories => {
         res.json(inventories);
