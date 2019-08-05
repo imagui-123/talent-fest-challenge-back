@@ -44,6 +44,8 @@ app.use(function(err, req, res, next) {
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
   console.log(`A Node Js API is listening on port: ${port}`);
+  
+  function reFresh(){
   require("dns").resolve("www.google.com", function(err) {
     if (err) {
       console.log("No connection");
@@ -51,4 +53,7 @@ app.listen(port, () => {
       console.log("Connected");
     }
   });
+  }
+  let myVar = setInterval(reFresh, 50000);
+
 });
