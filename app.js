@@ -8,6 +8,8 @@ const expressValidator = require("express-validator");
 const cors = require("cors");
 const dotenv = require("dotenv"); //loads environment variables from a .env file into process.
 const dns = require("dns");
+const isReachable = require('is-reachable');
+const https = require("https");
 dotenv.config();
 
 //db
@@ -42,19 +44,35 @@ app.use(function(err, req, res, next) {
   }
 });
 
+//PRIMERA OPCION
+// function testPort(port, host) {
+//   https.get({
+//     host: host, 
+//     port: port 
+//   }, function(res) {
+//     console.log("success", res); 
+//   }).on("error", function(e) {
+//     console.log("failure", e);
+//   });
+// }
+
+// let test = testPort(8081,"localhost")
+
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
   console.log(`A Node Js API is listening on port: ${port}`);
   
-  function reFresh(){
-  dns.resolve("www.google.com", function(err) {
-    if (err) {
-      console.log("No connection");
-    } else {
-      console.log("Connected");
-    }
-  });
-  }
-  let myVar = setInterval(reFresh, 1000);
+  // function reFresh(){ SEGUNDA OPCION
+  // dns.resolve("www.google.com", function(err) {
+  //   if (err) {
+  //     console.log("No connection");
+  //   } else {
+  //     console.log("Connected");
+  //   }
+  // });
+  // }
+
+  //PRIMERA OPCION
+  // testPort(8081,"localhost")
 
 });
